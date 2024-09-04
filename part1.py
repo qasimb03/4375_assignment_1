@@ -1,5 +1,5 @@
 '''
-Qasim Bhutta & Cameron 
+Qasim Bhutta & Camden Alpert 
 Assignment 1
 Anurag Nagar
 CS 4375
