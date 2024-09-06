@@ -1,0 +1,24 @@
+Training Run 1 (All Features Used - Adaptive Learning Rate with Initial Learning Rate of 0.001):
+R Squared Score (Training Set): 0.28
+R Squared Score (Test Set): 0.27
+Mean Squared Error (Training Set): 2.74
+Mean Squared Error (Test Set): 2.78
+
+Training Run 2 (Removed: "Gender", "Height", "FAVC", "FCVC", "NCP", "SMOKE", "CH2O", "SCC", "TUE", "MTRANS"):
+R Squared Score (Training Set): 0.24
+R Squared Score (Test Set): 0.25
+Mean Squared Error (Training Set): 2.87
+Mean Squared Error (Test Set): 2.85
+
+Training Run 3 (Removed: "Gender", "Height", "FAVC", "FCVC", "SMOKE", "MTRANS"):
+R Squared Score (Training Set): 0.25
+R Squared Score (Test Set): 0.27
+Mean Squared Error (Training Set): 2.83
+Mean Squared Error (Test Set): 2.76
+
+
+Training Run 4 (Features Used: 'Age', 'Weight', 'family_history_with_overweight', 'CAEC')
+R Squared Score (Training Set): 0.23
+R Squared Score (Test Set): 0.32
+Mean Squared Error (Training Set): 2.92
+Mean Squared Error (Test Set): 2.73
