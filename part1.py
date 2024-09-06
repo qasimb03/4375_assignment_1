@@ -17,10 +17,10 @@ from ucimlrepo import fetch_ucirepo
 student_performance = fetch_ucirepo(id=320) 
   
 # data (as pandas dataframes) 
-X = student_performance.data.features 
+x = student_performance.data.features 
 y = student_performance.data.targets 
 
-print(X.columns)
+print(x.columns)
 
 # variable information 
 # print(student_performance.variables) 
