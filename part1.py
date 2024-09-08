@@ -18,6 +18,7 @@ from ucimlrepo import fetch_ucirepo
 # Fetch dataset 
 obesity_level = fetch_ucirepo(id=544)
 
+
 # Initialize LabelEncoder
 le = LabelEncoder()
 
@@ -25,12 +26,11 @@ le = LabelEncoder()
 scaler = StandardScaler()
   
 # Data (as pandas dataframes);
-features_df = pd.DataFrame(obesity_level['data']['features'])
-targets_df = pd.DataFrame(obesity_level['data']['targets'])
+features_df = obesity_level.data.features
+targets_df = obesity_level.data.targets
 
 # Combined DataFrame (features + target)
-frames = [features_df, targets_df]
-df = pd.concat(frames, axis=1)
+df = obesity_level.data.original
 
 ### Data PreProcessing ###
 #Drops duplicate rows from all data DF
@@ -80,6 +80,8 @@ r2_test = r2_score(y_test, y_pred_test)
 
 mse_train = mean_squared_error(y_train, y_pred_train)
 mse_test = mean_squared_error(y_test, y_pred_test)
+
+print(f'Learned Coefficients: {model.coef_}')
 
 print(f'R-squared (Train): {r2_train}')
 print(f'R-squared (Test): {r2_test}')
