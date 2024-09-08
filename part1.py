@@ -8,6 +8,7 @@ CS 4375
 # Import necessary packages
 import numpy as np
 import pandas as pd
+import seaborn as sns
 from sklearn.linear_model import SGDRegressor
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
