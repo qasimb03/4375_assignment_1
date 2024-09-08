@@ -5,52 +5,84 @@ Anurag Nagar
 CS 4375
 '''
 
+# Import necessary packages
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
+from sklearn.linear_model import SGDRegressor
+from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-
-# Fetch dataset
 from ucimlrepo import fetch_ucirepo 
-  
-# fetch dataset 
-student_performance = fetch_ucirepo(id=320)
-type(student_performance)
 
-# data (as pandas dataframes) 
-x = student_performance.data.features
-y = student_performance.data.targets
-
-# variable information 
-# print(student_performance.variables) 
-
-# print(x.columns)
-
-df = pd.DataFrame(student_performance['data']['features'])
-print(df.head())
-print(df.shape)
-
-
-# Identify categorical columns
-categorical_cols = df.select_dtypes(include=['object', 'category']).columns
+# Fetch dataset 
+obesity_level = fetch_ucirepo(id=544)
 
 # Initialize LabelEncoder
 le = LabelEncoder()
+
+# Initialize Standard Scaler
+scaler = StandardScaler()
+  
+# Data (as pandas dataframes);
+features_df = pd.DataFrame(obesity_level['data']['features'])
+targets_df = pd.DataFrame(obesity_level['data']['targets'])
+
+# Combined DataFrame (features + target)
+frames = [features_df, targets_df]
+df = pd.concat(frames, axis=1)
+
+### Data PreProcessing ###
+#Drops duplicate rows from all data DF
+df.drop_duplicates(inplace=True)
+
+# Drops NaN from all data DF
+df.dropna(axis=1, inplace=True)
+
+# Identifies categorical columns
+categorical_cols = df.select_dtypes(include=['object']).columns
+
+# Identifies numeric columns
+numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
 
 # Apply Label Encoding to each categorical column
 for col in categorical_cols:
     df[col] = le.fit_transform(df[col])
 
-print(df.head())
-
-# Identify numeric columns
-numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
-
-scaler = StandardScaler()
-
-# Standardize the numeric columns
+# Scales numeric columns
 df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
 
-print(df.head())
+# Assigns features_df to encoded and scaled features data
+features_df = df.drop(columns=['NObeyesdad'])
+
+# Assigns features_df to encoded target
+targets_df = df['NObeyesdad']
+
+# Print correlation to see which features to include/remove for learning
+print(df.corr())
+
+# Which features to include in learning
+features_df = df[['Age', 'Weight', 'family_history_with_overweight', 'CAEC']]
+
+# 90/10 split
+x_train, x_test, y_train, y_test = train_test_split(features_df, targets_df, test_size=0.1, random_state=10)
+
+# Train Model. SGDRegressor uses Stochastic Gradient Descent method
+model = SGDRegressor(max_iter=1000, tol=1e-3, learning_rate='adaptive', eta0=0.001, random_state=10)
+model.fit(x_train, y_train)
+
+### Evaluation ###
+y_pred_train = model.predict(x_train)
+y_pred_test = model.predict(x_test)
+
+r2_train = r2_score(y_train, y_pred_train)
+r2_test = r2_score(y_test, y_pred_test)
+
+mse_train = mean_squared_error(y_train, y_pred_train)
+mse_test = mean_squared_error(y_test, y_pred_test)
+
+print(f'R-squared (Train): {r2_train}')
+print(f'R-squared (Test): {r2_test}')
+
+print(f'MSE (Train): {mse_train}')
+print(f'MSE (Test): {mse_test}')
