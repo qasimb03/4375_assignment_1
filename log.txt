@@ -1,24 +1,61 @@
-Training Run 1 (All Features Used - Adaptive Learning Rate with Initial Learning Rate of 0.001):
-R Squared Score (Training Set): 0.28
-R Squared Score (Test Set): 0.27
-Mean Squared Error (Training Set): 2.74
-Mean Squared Error (Test Set): 2.78
-
-Training Run 2 (Removed: "Gender", "Height", "FAVC", "FCVC", "NCP", "SMOKE", "CH2O", "SCC", "TUE", "MTRANS"):
-R Squared Score (Training Set): 0.24
-R Squared Score (Test Set): 0.25
-Mean Squared Error (Training Set): 2.87
-Mean Squared Error (Test Set): 2.85
-
-Training Run 3 (Removed: "Gender", "Height", "FAVC", "FCVC", "SMOKE", "MTRANS"):
-R Squared Score (Training Set): 0.25
-R Squared Score (Test Set): 0.27
-Mean Squared Error (Training Set): 2.83
-Mean Squared Error (Test Set): 2.76
+Dataset:
+Features: dteday, season, yr, mnth, hr, holiday, weekday, workingday, weathersit, temp, atemp, hum, windspeed
+Target: cnt
 
 
-Training Run 4 (Features Used: 'Age', 'Weight', 'family_history_with_overweight', 'CAEC')
-R Squared Score (Training Set): 0.23
-R Squared Score (Test Set): 0.32
-Mean Squared Error (Training Set): 2.92
-Mean Squared Error (Test Set): 2.73
+Training Run 1:
+Specifications:
+    All Features Used
+    Adaptive Learning Rate with Initial Learning Rate of 0.001
+    1000 Max Iterations
+    90/10 Train/Test split
+Scores:
+    R Squared Score (Training Set): -1.71e18
+    R Squared Score (Test Set): -2.14e18
+    Mean Squared Error (Training Set): 1.71e18
+    Mean Squared Error (Test Set): 2.19e18
+
+Training Run 2:
+Specifications:
+    Features Used: season, yr, mnth, hr, holiday, weekday, workingday, weathersit, temp, atemp, hum, windspeed
+    Adaptive Learning Rate with Initial Learning Rate of 0.001
+    1000 Max Iterations
+    90/10 Train/Test split
+R Squared Score (Training Set): 0.39
+R Squared Score (Test Set): 0.39
+Mean Squared Error (Training Set): 0.61
+Mean Squared Error (Test Set): 0.6
+
+Training Run 3:
+Specifications:
+    Features Used: season, yr, mnth, hr, temp, atemp, hum
+    Adaptive Learning Rate with Initial Learning Rate of 0.001
+    1000 Max Iterations
+    90/10 Train/Test split
+R Squared Score (Training Set): 0.39
+R Squared Score (Test Set): 0.39
+Mean Squared Error (Training Set): 0.61
+Mean Squared Error (Test Set): 0.6
+
+Training Run 4:
+Specifications:
+    Features Used: season, yr, mnth, hr, temp, atemp, hum
+    Optimal Learning Rate with Initial Learning Rate of 0.001
+    1000 Max Iterations
+    80/20 Train/Test split
+R Squared Score (Training Set): 0.34
+R Squared Score (Test Set): 0.31
+Mean Squared Error (Training Set): 0.66
+Mean Squared Error (Test Set): 0.68
+
+Training Run 5:
+Specifications:
+    Features Used: season, yr, mnth, hr, temp, atemp, hum
+    Optimal Learning Rate with Initial Learning Rate of 0.001
+    1000 Max Iterations
+    90/10 Train/Test split
+R Squared Score (Training Set): 0.35
+R Squared Score (Test Set): 0.35
+Mean Squared Error (Training Set): 0.66
+Mean Squared Error (Test Set): 0.63
+

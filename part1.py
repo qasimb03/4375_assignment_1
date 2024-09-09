@@ -17,7 +17,7 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from ucimlrepo import fetch_ucirepo 
 
 # Fetch dataset 
-obesity_level = fetch_ucirepo(id=544)
+bike_sharing = fetch_ucirepo(id=275)
 
 
 # Initialize LabelEncoder
@@ -27,11 +27,11 @@ le = LabelEncoder()
 scaler = StandardScaler()
   
 # Data (as pandas dataframes);
-features_df = obesity_level.data.features
-targets_df = obesity_level.data.targets
+features_df = bike_sharing.data.features
+targets_df = bike_sharing.data.targets
 
 # Combined DataFrame (features + target)
-df = obesity_level.data.original
+df = pd.concat([features_df, targets_df], axis=1)
 
 ### Data PreProcessing ###
 #Drops duplicate rows from all data DF
@@ -54,16 +54,16 @@ for col in categorical_cols:
 df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
 
 # Assigns features_df to encoded and scaled features data
-features_df = df.drop(columns=['NObeyesdad'])
+features_df = df.drop(columns=['cnt', 'dteday'])
 
 # Assigns features_df to encoded target
-targets_df = df['NObeyesdad']
+targets_df = df['cnt']
 
 # Print correlation to see which features to include/remove for learning
 print(df.corr())
 
 # Which features to include in learning
-features_df = df[['Age', 'Weight', 'family_history_with_overweight', 'CAEC']]
+features_df = df[["season", "yr", "mnth", "hr", "temp", "atemp", "hum"]]
 
 # 90/10 split
 x_train, x_test, y_train, y_test = train_test_split(features_df, targets_df, test_size=0.1, random_state=10)
