@@ -1,6 +1,6 @@
-Here's a README template based on your instructions:
-
----
+Qasim Bhutta & Camden Alpert
+Anurag Nagar
+CS 4375
 
 # Assignment 1 - Python Code
 
@@ -45,5 +45,3 @@ python part1.py
 ```
 
 ---
-
-This should guide users through setting up and running your Python project.
