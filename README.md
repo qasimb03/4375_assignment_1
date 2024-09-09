@@ -14,19 +14,23 @@ Make sure you have Python installed. You can download Python from [here](https:/
 
 ### Installation
 
-1. Clone the repository:
+1. Navigate to where you would like to clone the project:
+    ```bash
+    cd /temp/
+    ```
+2. Clone the repository:
 
     ```bash
     git clone https://github.com/qasimb03/4375_assignment_1.git
     ```
 
-2. Navigate to the project directory:
+3. Navigate to the project directory:
 
     ```bash
     cd 4375_assignment_1
     ```
 
-3. Install the required packages:
+4. Install the required packages:
 
     ```bash
     pip install -r requirements.txt
