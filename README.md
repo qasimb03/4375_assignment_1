@@ -1,6 +1,4 @@
-Qasim Bhutta & Camden Alpert
-Anurag Nagar
-CS 4375
+### Qasim Bhutta & Camden Alpert
 
 # Assignment 1 - Python Code
 
